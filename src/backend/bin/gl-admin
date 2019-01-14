@@ -1,0 +1,89 @@
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
+
+import os
+import sys
+import sqlite3
+
+from globaleaks import models
+from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
+from globaleaks import DATABASE_VERSION
+
+def reset_password(dbfile, username=None, password=None):
+    salt = generateRandomSalt()
+
+    if password is None:
+        password = generateRandomPassword()
+
+    hashed_password = hash_password(password, salt)
+
+    QUERY = 'UPDATE user SET salt="%s", password="%s"' % (salt, hashed_password)
+    QUERY += ' WHERE username = "%s";' % (username)
+
+    conn = sqlite3.connect(dbfile)
+    c = conn.cursor()
+    c.execute(QUERY)
+    conn.commit()
+    conn.close()
+
+    return password
+
+def funny_print(stringz, details):
+    block = 40
+    print stringz, " " * (block - len(stringz)), details
+
+
+def check_file(isafile):
+    print "checking file: %s" % isafile
+    if not os.path.isfile(isafile):
+        print "Missing file: %s" % isafile
+        quit()
+
+if len(sys.argv) == 1:
+    print "\nOwb backend administator interface: Missing command\n"
+    funny_print(" resetpass <DBFILE> <USERNAME> [PASSWORD]","(reset user password)")
+    funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
+    funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
+    quit()
+
+if sys.argv[1] == 'safexport' and len(sys.argv) >= 3:
+    try:
+        check_file(sys.argv[2])
+        # if 'print' is present, or something else, just dump to stdout
+        do_safexport(sys.argv[2], True if len(sys.argv) == 4 else None )
+        # shall be another dedicated option!
+    except Exception as excep:
+        print "Something is going wrong: %s" % excep
+
+elif sys.argv[1] == 'resetpass' and (len(sys.argv) == 4 or len(sys.argv) == 5):
+    try:
+        check_file(sys.argv[2])
+
+        username = sys.argv[3]
+
+        if len(sys.argv) == 5:
+            password = reset_password(sys.argv[2], username, sys.argv[4])
+        else:
+            password = reset_password(sys.argv[2], username)
+
+        print "================================="
+        print "||  Password reset completed   ||"
+        print "================================="
+        print "     Username: %s" % username
+        print "     Password: %s" % password
+        print "================================="
+    except Exception as excep:
+        print "Something is going wrong: %s" % excep
+
+elif sys.argv[1] == 'backup' and len(sys.argv) == 4:
+    print "backup not yet implemented"
+    pass
+
+elif sys.argv[1] == 'restore' and len(sys.argv)== 4:
+    print "restore do not yet implemented"
+    pass
+
+else:
+    print "Wrong usage of %s command (missing option or bad keyword)" % sys.argv[0]
+    print "Run %s without arguments to trigger the help" % sys.argv[0]
+    quit()

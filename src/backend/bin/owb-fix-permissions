@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# user permission check
+if [ ! $(id -u) = 0 ]; then
+    echo "Error: owb-fix-permissions script must be runned by root"
+    exit 1
+fi
+
+[ -d /var/owb ] ||  mkdir -p /var/owb
+chown owb:owb /var/owb
+chmod 750 /var/owb
+
+[ -d /var/owb/torhs ] || mkdir -p /var/owb/torhs/
+chown owb:owb /var/owb/torhs/
+chmod 700 /var/owb/torhs
+
+[ -d /var/run/owb ] || mkdir -p /var/run/owb
+chown -R owb:owb /var/run/owb
+chmod 750 /var/run/owb
+
+[ -d /dev/shm/owb ] || mkdir -p /dev/shm/owb
+chown -R owb:owb /dev/shm/owb
+chmod 750 /dev/shm/owb

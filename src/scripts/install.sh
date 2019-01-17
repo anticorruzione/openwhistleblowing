@@ -8,4 +8,4 @@ echo "Installing packages"
 yum -y install postgresql96-devel &> /dev/null
 
 echo "Installing owb"
-yum -y install ../../binary/owb-1.0.0-1.x86_64.rpm &> /dev/null
+yum -y install ../../binary/owb-1.0.1-1.x86_64.rpm &> /dev/null

@@ -19,6 +19,8 @@ I prerequisiti per l'installazione sono:
 - 100 GB di disco per lo storage di allegati
 - 4 GB RAM (suggeriti 8)
 
+Al termine dell'installazione la password di default degli utenti è password1
+
 ### RPM
 L'installazione mediante RPM si effettua o utilizzando lo script presente in src/scripts/install.sh,
 oppure lanciando manualmente le seguenti istruzioni:

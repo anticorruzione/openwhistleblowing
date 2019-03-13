@@ -4429,11 +4429,11 @@ GLClient.controller('TipCtrl',
     $scope.tipReceivers = [];
 
     $http.get('/tipstatus').then(function(data){
-      $scope.tipStates = data;
+      $scope.tipStates = data.data;
     });
 
     $http.get('/receivers').then(function(data){
-      $scope.tipReceivers = data;
+      $scope.tipReceivers = data.data;
     });
 
 

@@ -50,7 +50,16 @@ del comando di partenza del container si rimanda alla documentazione specifica d
 ```bash
 docker run -d --restart=unless-stopped --name=owb -p 80:80 -v /data:/var/owb/files owb:anac
 ```
-per la successiva configurazione é possibile entrare nel container in esecuzione:
+il container accetta due variabili d'ambiente:
+| nome                      |   valore  |
+|---------------------------|:---------:|
+| EXTERNAL_HOSTNAME         | <stringa> |
+| DISABLE_MAIL_NOTIFICATION |     0     |
+
+la prima, permette di inserire l'hostname con il quale viene raggiunto il servizio (e.g. myhost.mydomain.local),
+la seconda, permette di abilitare il servizio di invio delle email (di default disabilitato).
+
+Per una successiva configurazione é possibile entrare nel container in esecuzione:
 ```bash
 docker exec -it owb /bin/bash
 ```

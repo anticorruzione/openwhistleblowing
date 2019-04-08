@@ -51,9 +51,10 @@ del comando di partenza del container si rimanda alla documentazione specifica d
 docker run -d --restart=unless-stopped --name=owb -p 80:80 -v /data:/var/owb/files owb:anac
 ```
 il container accetta due variabili d'ambiente:
+
 | nome                      |   valore  |
 |---------------------------|:---------:|
-| EXTERNAL_HOSTNAME         | <stringa> |
+| EXTERNAL_HOSTNAME         |  stringa  |
 | DISABLE_MAIL_NOTIFICATION |     0     |
 
 la prima, permette di inserire l'hostname con il quale viene raggiunto il servizio (e.g. myhost.mydomain.local),

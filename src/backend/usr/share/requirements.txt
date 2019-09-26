@@ -1,5 +1,5 @@
 Parsley==1.2
-Twisted==13.2.0
+Twisted==19.7.0
 cyclone==1.1
 enum34==0.9.23
 pyasn1==0.1.7

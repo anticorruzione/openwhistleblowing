@@ -5,7 +5,7 @@ enum34==0.9.23
 pyasn1==0.1.7
 psycopg2==2.4
 pycparser==2.10
-python_gnupg==0.3.6
+python_gnupg==0.4.4
 scrypt==0.6.1
 six==1.5.2
 storm==0.19

@@ -55,7 +55,7 @@ il container accetta due variabili d'ambiente:
 | nome                      |   valore  |
 |---------------------------|:---------:|
 | EXTERNAL_HOSTNAME         |  stringa  |
-| DISABLE_MAIL_NOTIFICATION |     0     |
+| DISABLE_MAIL_NOTIFICATION |   0 o 1   |
 
 la prima, permette di inserire l'hostname con il quale viene raggiunto il servizio (e.g. myhost.mydomain.local),
 la seconda, permette di abilitare il servizio di invio delle email (di default disabilitato).

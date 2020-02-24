@@ -1,0 +1,117 @@
+<div id="ReceiverToolbar" class="row">
+  <div class="col-md-12">
+    <a id="link-tiplist"
+       data-ng-if="session.role === 'receiver'"
+       href="#!/receiver/dashboard"
+       uib-popover="{{'List of the submissions' | translate}}"
+       popover-placement="top"
+       popover-trigger="mouseenter"
+       class="btn btn-default">
+      <span class="glyphicon glyphicon-th-list"></span>
+    </a>
+
+    <a id="link-tiplist"
+       data-ng-if="session.role === 'custodian'"
+       href="#!/custodian/identityaccessrequests"
+       uib-popover="{{ 'Identity access requests' | translate }}"
+       popover-placement="top"
+       popover-trigger="mouseenter"
+       class="btn btn-default">
+      <span class="glyphicon glyphicon-th-list"></span>
+    </a>
+
+    <form id="TipExportForm" data-ng-if="session.role === 'receiver'"  method="POST" action="{{::tip.export}}" novalidate>
+      <input type="hidden" name="session" value="{{session.id}}">
+      <button id="tip-action-export"
+              uib-popover="{{'Export' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
+        <i class="glyphicon glyphicon-save"></i>
+      </button>
+    </form>
+
+    <span id="tip-action-postpone" data-ng-if="session.role === 'receiver'"
+          data-ng-if="preferences.can_postpone_expiration"
+          data-ng-click="tip_postpone()"
+          uib-popover="{{'Postpone submission expiration date' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <i class="glyphicon glyphicon-time"></i>
+    </span>
+
+    <span id="tip-action-delete" data-ng-if="session.role === 'receiver'"
+          data-ng-if="preferences.can_delete_submission"
+          data-ng-click="tip_delete()"
+          uib-popover="{{'Delete tip' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <span class="glyphicon glyphicon-trash"></span>
+    </span>
+
+    <span id="link-reload" data-ng-if="session.role === 'receiver'"
+          data-ng-click="reload()"
+          uib-popover="{{'Refresh page' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <span class="glyphicon glyphicon-refresh"></span>
+    </span>
+  </div>
+</div>
+
+<div class="row" data-ng-if="!node.disable_encryption_warning && preferences.pgp_key_status !== 'enabled'">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning!</span></strong>
+      <span data-translate>You have not set up your encryption key, so the files will not be encrypted prior to being stored on the server.</span>
+      <span data-translate>This may lead to unintended access to the files by the server administrator or others in case the server is compromised.</span>
+      <span data-translate>Please configure your PGP keys in the recipient preferences page.</span>
+    </div>
+  </div>
+</div>
+<div class="row" data-ng-if="!node.disable_encryption_warning && tip_unencrypted">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning!</span></strong>
+      <span data-translate>One or more of the recipients of this submission has not configured a PGP key.</span>
+      <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-include="'views/partials/tip_info.html'"></div>
+    <div data-ng-if="tip.show_recipients_details" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
+  </div>
+  <div class="col-md-6">
+    <div data-ng-include="'views/submission/tip_status.html'"></div>
+    <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6" data-ng-if="tip.enable_comments">
+    <div data-ng-include="'views/partials/tip_comments.html'"></div>
+  </div>
+  <div class="col-md-6" data-ng-if="tip.enable_messages">
+    <div data-ng-include="'views/partials/tip_messages.html'"></div>
+  </div>
+</div>

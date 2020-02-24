@@ -1,0 +1,43 @@
+<div ng-if="!tip.identity_provided" id="TipInfoBox" class="panel panel-default" data-ng-init="collapsed = false; submission = {}">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <div>
+      <span>
+        <span data-ng-switch="tip.identity_provided">
+          <span data-ng-switch-when="true">Identity</span>
+          <span data-ng-switch-when="false">{{whistleblower_identity_field.label}}</span>
+        </span>
+        <span class="pull-right">
+          <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+          <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+    <div data-ng-switch="tip.identity_provided">
+      <div data-ng-switch-when="true">
+        <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
+          <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
+        <dd>
+      </div>
+      <div data-ng-switch-when="false">
+        <div data-ng-form="f" class="submissionFieldInput">
+          <!--div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div-->
+          <div>
+            <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_1" data-ng-model="provide_identity" data-ng-value="true" /><span data-translate>Yes</span></label>
+            <label class="radio-inline"><input class="inputelem" type="radio" name="whistleblober_identity_radio_1" data-ng-model="provide_identity" data-ng-value="false" /><span data-translate>No</span></label>
+          </div>
+          <div ng-if="provide_identity">
+            <div data-ng-include="'views/submission/form.html'"></div>
+            <div id="SubmitBox">
+              <button id="SubmitButton" class="btn btn-success pull-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers);" data-ng-disabled="f.$invalid" type="submit">
+                <i id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+                <span data-translate>Submit</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

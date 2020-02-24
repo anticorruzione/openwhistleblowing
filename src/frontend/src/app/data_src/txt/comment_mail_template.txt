@@ -1,0 +1,10 @@
+Dear %RecipientName%,
+
+This is an email to notify you of a new comment on an existing submission.
+
+The submission can be accessed:
+via Tor at: %TorURL%
+via HTTPS at: %T2WURL%
+
+Kind regards,
+%NodeName%

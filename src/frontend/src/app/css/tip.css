@@ -1,0 +1,63 @@
+.TipPageSection {
+  border: 1px solid #CCC;
+  margin-bottom: 20px;
+}
+
+.TipPageSectionContent {
+  padding: 10px;
+}
+
+.TipPageSectionContent .label {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.newTip {
+  font-weight: bold;
+}
+
+.selectedTip,
+.table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+  background-color: #FFFFCC;
+}
+
+.tip-action-open {
+  cursor: pointer;
+}
+
+.stepTitle, .fieldTitle {
+  font-weight: bold;
+}
+
+.fieldAnswer {
+  margin-bottom: 10px;
+}
+
+.TipLabel {
+  color: #428bca;
+}
+
+.WbNameInMessages {
+  font-weight: bold;
+}
+
+.ReceiverNameInMessages {
+  font-weight: bold;
+}
+
+#SubmissionComments, #SubmissionMessages {
+  margin-top: 20px;
+}
+
+#TipExportForm {
+  display: inline;
+}
+
+#StatusPageMessage {
+  margin: 20px;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  font-weight: bold;
+  text-align: center;
+}

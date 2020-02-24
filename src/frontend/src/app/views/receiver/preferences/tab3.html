@@ -1,0 +1,19 @@
+<div class="col-md-8">
+  <div class="form-group">
+    <input data-ng-model="preferences.tip_notification" type="checkbox">
+    <label>
+      <span data-translate>Enable submission notification</span>
+    </label>
+    <div data-ng-show="preferences.tip_notification">
+      <span class="btn-info">
+        <span data-translate>Enabled</span>
+      </span>
+      <span data-translate>Every event related to a new or updated submission will trigger an email with a link to it.</span>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Update notification settings</span>
+  </button>
+</div>

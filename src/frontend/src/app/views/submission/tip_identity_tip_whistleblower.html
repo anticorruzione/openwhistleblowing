@@ -1,0 +1,14 @@
+<div id="TipQuestionnaireAnswersBox" class="TipPageSection" data-ng-init="collapsed = false">
+    <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+        <div>
+            <span data-translate>Generalità</span>
+            <span class="pull-right">
+                <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+                <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+            </span>
+        </div>
+    </div>
+    <div class="TipPageSectionContent" data-ng-show="!collapsed">
+        <div data-ng-include="'views/submission/identity_tip_whistleblower.html'"></div>
+    </div>
+</div>

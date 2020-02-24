@@ -1,0 +1,27 @@
+<div data-ng-repeat="row in rows" data-ng-init="fieldRow=$index" class="fieldsRow row">
+  <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
+      <div id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}" class="panel panel-default" data-ng-show="fieldIsTriggered(field)">
+        <div class="panel-heading">
+          <label>
+            <span class="fieldLabel">{{::field.label}}</span>
+            <a href="" data-ng-show="::field.hint" data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-question-sign"></i>
+            </a>
+          </label>
+          <span class="text-red"
+                data-ng-if="::field.required"
+                uib-popover="{{'This field is mandatory' | translate}}"
+                popover-placement="right"
+                popover-trigger="mouseenter">*</span>
+        </div>
+        <div class="panel-body">
+          <div class="FieldDescription">{{::field.description}}</div>
+          <div class="submissionFieldInput form-group">
+            <div data-ng-include="'views/submission/form_field_inputs.html'"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

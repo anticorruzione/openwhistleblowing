@@ -1,0 +1,199 @@
+<div data-ng-controller="TipCtrl" data-ng-init="workflow=1">
+        <div class="row">
+                <div class="col-md-12">
+                        <div class="pull-left">
+                                <a id="link-tiplist" 
+                                        href="#!/receiver/tips" 
+                                        popover="{{'Tips' | translate}}" 
+                                        popover-placement="top" 
+                                        popover-trigger="mouseenter"
+                                        class="btn btn-default">
+                                        <span class="glyphicon glyphicon-th-list"></span>
+                                </a>
+                                <span id="tip-action-postpone" 
+                                        data-ng-if="preferences.can_postpone_expiration"
+                                        data-ng-click="tip_postpone()" 
+                                        popover="{{'Postpone tip expiration date' | translate}}"
+                                        popover-placement="top" 
+                                        popover-trigger="mouseenter" 
+                                        class="btn btn-default">
+                                        <i class="glyphicon glyphicon-time"></i>
+                                </span>
+                                <span id="tip-action-delete" 
+                                        data-ng-if="preferences.can_delete_submission"
+                                        data-ng-click="tip_delete()" 
+                                        popover="{{'Delete tip' | translate}}"
+                                        popover-placement="top" 
+                                        popover-trigger="mouseenter" 
+                                        class="btn btn-default">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                </span>
+                                <span id="link-reload" 
+                                        data-ng-click="reload()" 
+                                        popover="{{'Refresh page' | translate}}" 
+                                        popover-placement="top" 
+                                        popover-trigger="mouseenter"
+                                        class="btn btn-default">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                </span>
+                        </div>
+                        <div class="pull-right">
+                                <a id="link-preferences" 
+                                data-ng-click="workflow=workflow==4?4:workflow+1" 
+                                class="btn btn-default">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                </a>
+                        </div>
+                </div>
+        </div>
+        <br />
+        <div class="row">
+                <div class="col-md-12">
+                        <table class="table table-condensed table-striped">
+                                <thead>
+                                        <tr>
+                                                <th class="col-md-2">Data</th>
+                                                <th class="col-md-2">ID Segnalazione</th>
+                                                <th class="col-md-2">Soggetto</th>
+                                                <th class="col-md-6">Evento</th>
+                                        </tr>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                                <td class="col-md-2">01/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Segnalante</td>
+                                                <td class="col-md-6">Inserimento segnalazione</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">01/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Capo Istruttore</td>
+                                                <td class="col-md-6">Notifica email ricezione segnalazione</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">03/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Capo Istruttore</td>
+                                                <td class="col-md-6">Assegnazione a istruttore</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">03/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Notifica email assegnazione a istruttore</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">04/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Presa in carico</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">04/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Invio messaggio a segnalante di richiesta chiarimento</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">04/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Segnalante</td>
+                                                <td class="col-md-6">Accesso e Lettura messaggi</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">05/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Segnalante</td>
+                                                <td class="col-md-6">Invio ulteriori evidenze</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">05/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Segnalante</td>
+                                                <td class="col-md-6">Invio messaggi</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">05/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Notifica email ricezione evidenze e messaggi</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">06/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Ricezione messaggi e ulteriori evidenze</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">06/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Consultazione evidenze</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">06/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Invio messaggio di richiesta chiarimento</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">07/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Segnalante</td>
+                                                <td class="col-md-6">Comunicazione Identità</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">07/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Notifica email comunicazione identità</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">08/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Richiesta accesso a identità</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">08/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Custode Identità</td>
+                                                <td class="col-md-6">Notifica richiesta accesso identità</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">09/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Custode Identità</td>
+                                                <td class="col-md-6">Autorizzazione visualizzazione identità</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">09/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Notifica accesso identità autorizzata</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">10/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Accesso e lettura identità whistleblower</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">12/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Istruttore</td>
+                                                <td class="col-md-6">Proposta esito segnalazione: inoltrata autorità competente / archiviazione</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-2">15/07/2015</td>
+                                                <td class="col-md-2">20150701-01</td>
+                                                <td class="col-md-2">Capo Istruttore</td>
+                                                <td class="col-md-6">Esito finale segnalazione (nd: delibera consiglio):</td>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </div>
+        </div>
+</div>

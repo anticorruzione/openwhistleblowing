@@ -1,0 +1,62 @@
+{
+  "name": "GlobaLeaks",
+  "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
+  "version": "2.60.144",
+  "license": "AGPL-3.0",
+  "authors": [
+    "Claudio Agosti <vecna@globaleaks.org>",
+    "Yvette Agostini <mnemosyne@logioshermes.org>",
+    "Arturo Filastò <hellais@globaleaks.org>",
+    "Michele Orrù <maker@globaleaks.org>",
+    "Giovanni Pellerano <evilaliv3@globaleaks.org>",
+    "Fabio Pietrosanti <naif@globaleaks.org>"
+  ],
+  "homepage": "https://github.com/globaleaks/GlobaLeaks",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:globaleaks/GlobaLeaks.git"
+  },
+  "main": "app",
+  "private": true,
+  "directory": "app/components/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.6.7",
+    "angular-aria": "1.5.0",
+    "angular-filter": "0.5.8",
+    "angular-resource": "1.5.0",
+    "angular-route": "1.5.0",
+    "angular-translate": "~2.17.0",
+    "angular-translate-loader-url": "2.10.0",
+    "angular-translate-loader-static-files": "2.10.0",
+    "angular-ui-bootstrap-bower": "~2.5.x",
+    "bowser": "1.0.0",
+    "bootstrap": "3.3.6",
+    "bootstrap-rtl-ondemand": "3.3.4-ondemand",
+    "d3": "3.5.16",
+    "es6-promise": "~4.2.2",
+    "flow.js": "~2.13.0",
+    "fusty-flow.js": "1.2.0",
+    "jquery": "2.2.1",
+    "js-polyfills": "0.1.16",
+    "ng-flow": "~2.7.7",
+    "openpgp": "~2.6.2",
+    "scrypt-async": "1.2.0",
+    "stacktrace-js": "1.0.4"
+  },
+  "resolutions": {
+    "angular": "~1.6.7",
+    "angular-translate": "~2.17.0",
+    "angular-ui-bootstrap-bower": "~2.5.x",
+    "es6-promise": "~4.2.2",
+    "flow.js": "~2.13.0",
+    "ng-flow": "~2.7.7",
+    "openpgp": "~2.6.2"
+  }
+}

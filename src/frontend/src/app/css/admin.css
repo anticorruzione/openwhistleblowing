@@ -1,0 +1,217 @@
+/** Configuration Pages **/
+
+.adminConfigSection {
+  margin-bottom: 25px;
+}
+
+.actionButton {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.configItem {
+  background-color: #FCFCFC;
+  box-shadow: 2px 1px 5px #888888;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  padding: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+#StepAddBox, #StepsEditBox,#FieldsEditBox, #ContextAdvancedSettingsBox {
+  margin-top: 30px;
+}
+
+.templateFieldAdder {
+  background:
+    linear-gradient(#fff 30%, rgba(255,0,0,0)),
+    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 100% 60px, 100% 60px, 100% 10px, 100% 10px;
+  background-attachment: local, local, scroll, scroll;
+
+  max-height: 220px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.templateFieldAdder .placeholder,
+.configuredFields .placeholder {
+  height: 100px;
+  width: 50%;
+  float: left;
+  border: 3px dotted #f1f1f1;
+  border-radius: 4px;
+  visibility: visible;
+}
+
+.templateFieldAdderContainer ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+.templateFieldAdderContainer ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.templateFieldCard {
+  background-color: #fff;
+  border-radius: 3px;
+
+  -moz-border-radius: 3px;
+  box-shadow: 2px 1px 5px #888888;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  font-weight: bold;
+}
+
+.addField, .addFieldFromTemplate {
+  clear: both;
+  margin-bottom: 10px;
+}
+
+.addFieldButton {
+  vertical-align: bottom;
+}
+
+.fileDetails {
+  margin: 0 0 10px 20px;
+}
+
+.field {
+  position: relative;
+  border: 1px solid rgb(204, 204, 204);
+  margin-bottom: 20px;
+}
+
+.fieldLabel {
+  margin-top: 20px;
+}
+
+.stepEditorHeader, .fieldEditorHeader {
+  padding: 20px;
+}
+
+.stepEditor, .fieldEditor {
+  padding-top: 20px;
+}
+
+/** END **/
+
+.editorHeader {
+  background-color: rgb(252, 252, 252);
+}
+
+.editorHeaderTitle {
+  letter-spacing: -1px;
+  line-height: 1;
+  display: block;
+}
+
+.editorHeaderTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.editorTitle {
+  font-size: 18px;
+}
+
+.fieldOption {
+  margin-bottom: 10px;
+}
+
+.imageUpload .profile {
+  position: relative;
+  width: 160px;
+}
+
+.imageUpload .profile .uploadfile {
+}
+
+.imageUpload .changePicture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  text-align: center;
+  background-color: #0088cc;
+  z-index: 2;
+  color: #FFF;
+}
+
+.imageUpload .profile .close {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.8;
+}
+
+.imageUpload .profile .fileselector input {
+  position: relative;
+  opacity: 0;
+  height: 100%;
+  z-index: 100;
+}
+
+.uploadProgress .progress {
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  z-index: 10;
+  display: block;
+  width: 100%;
+}
+
+.selectionList {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+}
+
+.selectionList .row {
+  margin-left: 0;
+}
+
+.selectionContextItem .checkbox {
+  display: inline;
+  top: 0;
+  position: absolute;
+  left: -40px;
+}
+
+.hour {
+  text-align: left;
+}
+
+.bordered {
+  stroke: #FFFFFF;
+  stroke-width: 2px;
+}
+
+text.mono {
+  font-size: 9pt;
+  font-family: Consolas, courier, monospace;
+  fill: #aaa;
+}
+
+
+text.axis-workweek {
+  fill: #000;
+}
+
+text.axis-worktime {
+  fill: #000;
+}

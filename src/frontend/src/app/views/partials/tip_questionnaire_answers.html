@@ -1,0 +1,24 @@
+<div id="TipQuestionnaireAnswersBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <div>
+      <span data-translate>Questionnaire answers</span>
+      <span class="pull-right">
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+      </span>
+    </div>
+  </div>
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+    <div data-ng-repeat="step in tip.questionnaire | orderBy:'presentation_order'">
+      <dt id="step={{$index}}">
+        <span data-translate>Step</span>
+        <span>{{$index + 1}}: {{::step.label}}</span>
+      </dt>
+      <dd>
+        <div div data-ng-repeat="field in step.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
+          <span data-ng-init="fieldAnswers=tip.answers" data-ng-include="'views/partials/tip_field.html'"></span>
+        </div>
+      <dd>
+    </div>
+  </div>
+</div>

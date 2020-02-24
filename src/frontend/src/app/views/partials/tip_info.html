@@ -1,0 +1,86 @@
+<div id="TipInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <div>
+      <span data-translate>Submission</span><span data-ng-if="::session.role == 'receiver'">:</span>
+      <span data-ng-if="::session.role == 'receiver'">
+        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
+              uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
+          <span>{{::tip.label}}</span>
+          <i class="glyphicon glyphicon-tag"></i>
+        </span>
+
+        <span data-ng-if="showEditLabelInput" class="form-inline">
+          <div class="form-group">
+            <span id="AssignLabelInput" class="input-group">
+              <input type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
+              <span class="input-group-addon" data-ng-click="updateLabel(tip.label); $event.stopPropagation();"
+                   uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
+                <i class="glyphicon glyphicon-tag"></i>
+              </span>
+            </span>
+          </div>
+        </span>
+      </span>
+      <span class="pull-right">
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th data-ng-if="::session.role == 'receiver'">
+            <i class="glyphicon glyphicon-barcode"></i>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-inbox"></i>
+            <span data-translate>Context</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Creation date</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Last update</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-hourglass"></i>
+            <span data-translate>Expiration date</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-send"></i>
+            <span data-translate>Connection</span>
+          </th>
+          <th data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">
+            <i class="glyphicon glyphicon-flash"></i>
+            <span data-translate>Score</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-ng-if="::session.role == 'receiver'">{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
+          <td>{{::tip.context_name}}</td>
+          <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>
+            <span data-ng-if="!tip.tor2web"
+                class="label label-warning"
+                uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                data-translate>HTTPS</span>
+            <span data-ng-if="tip.tor2web"
+                class="label label-success"
+                uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                data-translate>Tor</span>
+          </td>
+          <td data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

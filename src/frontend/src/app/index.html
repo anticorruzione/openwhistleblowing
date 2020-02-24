@@ -1,0 +1,277 @@
+<!doctype html>
+<html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
+  <head>
+    <title data-ng-bind="node.name">GlobaLeaks</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="referrer" content="never" />
+
+    <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 9 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11,10,9" />
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-rtl-ondemand.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/submission.css" />
+    <link rel="stylesheet" href="css/tip.css" />
+    <link rel="stylesheet" href="css/rtl.css" />
+    <!-- endbuild -->
+  </head>
+
+  <body>
+    <style type="text/css">
+      #LoadingOverlay {
+        position: fixed;
+        width: 100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        top: 0;
+        z-index: 2147483647;
+        text-align: center;
+      }
+
+      #LoaderBox {
+        position: relative;
+        margin: 0 auto;
+        width: 30%;
+        height: 30%;
+        display: flex;
+        align-items: center;
+        font-size: 48px;
+        background-color: #FFF;
+        border: 1px solid #DDD;
+        border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+      }
+
+      #LoaderBoxContent {
+        margin: 0 auto;
+        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
+        font-size: 48px;
+        color: #555;
+        background-color: #FFF;
+      }
+
+      .gly-spin {
+        -webkit-animation: gly-spin 2s infinite linear;
+        animation: gly-spin 2s infinite linear;
+      }
+
+      @-webkit-keyframes gly-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(359deg);
+          transform: rotate(359deg);
+        }
+      }
+
+      @keyframes gly-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(359deg);
+          transform: rotate(359deg);
+        }
+      }
+
+      [ng\:cloak], [ng-cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+      }
+
+      .preload_error {
+        margin: 0 auto;
+        padding: 30px;
+      }
+    </style>
+
+    <noscript>
+      <div class="preload_error">
+        <h1>Error! :(</h1>
+        <br /><br />
+        <p>
+          Your browser is not running Javascript that is required to
+          use the whistleblowing client.<br /><br />
+
+          It's common believe that Javascript and security don't sound
+          well together, for this reason we suggest to use the Tor Browser,
+          an extremely tuned FireFox browser with Tor integrated.
+
+          Here you can found and download the latest release of:
+          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>.
+        </p>
+      </div>
+    </noscript>
+
+    <div id="BrowserNotSupported" class="preload_error" style="display: none">
+      <div>
+        <h1>[EN] Warning! :(</h1><br /><br />
+        <div>
+          You are running an unsupported (and potentially vulnerable) browser.<br /><br />
+          You are strongly advised to download and install the
+          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
+          to securely and anonymously access this whistleblowing platform.<br />
+
+          The following is the list of the other supported browsers:<br />
+          <ul>
+            <li>Mozilla Firefox &gt;= 21</li>
+            <li>Google Chrome &gt;= 11</li>
+            <li>Safari: &gt;= 6.1</li>
+            <li>Edge: &gt;= 12</li>
+            <li>Internet Explorer &gt;= 11</li>
+          </ul>
+
+          Please note that the above browers, even if supported, does not benefit of the same high anonimity guarantees of the Tor Browser.
+        </div>
+      </div>
+      <br /><br />
+      <div>
+        <h1>[IT] Attenzione! :(</h1><br /><br />
+        <div>
+          Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
+          Si invita caldamente a scaricare ed installare il
+          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
+          al fine di accedere a questa piattaforma di whistleblowing in modo sicuro ed anonimo.<br />
+
+          La  seguente è  la lista degli altri browser supportati:<br />
+          <ul>
+            <li>Mozilla Firefox &gt;= 21</li>
+            <li>Google Chrome &gt;= 11</li>
+            <li>Safari: &gt;= 6.1</li>
+            <li>Edge: &gt;= 12</li>
+            <li>Internet Explorer &gt;= 11</li>
+          </ul>
+
+          Si prega di notare che i browser sopra citati, anche se supportati, non beneficiano delle stesse garanzie di anonimato e sicurezza offerte dal Tor Browser.
+        </div>
+      </div>
+    </div>
+
+    <div id="BrowserSupported">
+      <div id="LoadingOverlay"  data-ng-hide="started && !showLoadingPanel">
+        <div id="LoaderBox" class="ng-cloak">
+          <div id="LoaderBoxContent">
+            <div class="glyphicon glyphicon-cog gly-spin"></div>
+            <div data-translate>Loading…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
+      <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
+    </div>
+
+    <!-- build:js js/scripts.js -->
+    <script src="components/js-polyfills/typedarray.js"></script>
+    <script src="components/es6-promise/promise.js"></script>
+    <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
+    <script src="components/scrypt-async/scrypt-async.min.js"></script>
+    <script src="components/openpgp/dist/openpgp.min.js"></script>
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/angular/angular.min.js"></script>
+    <script src="components/angular-aria/angular-aria.min.js"></script>
+    <script src="components/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="components/angular-resource/angular-resource.min.js"></script>
+    <script src="components/angular-route/angular-route.min.js"></script>
+    <script src="components/angular-translate/angular-translate.min.js"></script>
+    <script src="components/angular-translate-loader-url/angular-translate-loader-url.min.js"></script>
+    <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+    <script src="components/d3/d3.min.js"></script>
+    <script src="components/FileSaver.js/FileSaver.min.js"></script>
+    <script src="components/flow.js/dist/flow.min.js"></script>
+    <script src="components/fusty-flow.js/src/fusty-flow.js"></script>
+    <script src="components/fusty-flow.js/src/fusty-flow-factory.js"></script>
+    <script src="components/ng-flow/dist/ng-flow.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/preferences.js"></script>
+    <script src="js/controllers/fileupload.js"></script>
+    <script src="js/controllers/wizard.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/receiver.js"></script>
+    <script src="js/controllers/tip.js"></script>
+    <script src="js/controllers/custodian.js"></script>
+    <script src="js/controllers/admin/main.js"></script>
+    <script src="js/controllers/admin/users.js"></script>
+    <script src="js/controllers/admin/receivers.js"></script>
+    <script src="js/controllers/admin/contexts.js"></script>
+    <script src="js/controllers/admin/fields.js"></script>
+    <script src="js/controllers/admin/steps.js"></script>
+    <script src="js/controllers/admin/questionnaires.js"></script>
+    <script src="js/controllers/admin/overview.js"></script>
+    <script src="js/controllers/admin/stats.js"></script>
+    <script src="js/controllers/admin/shorturls.js"></script>
+    <script src="js/controllers/submission.js"></script>
+    <script src="js/controllers/receipt.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/user.js"></script>
+    <script src="js/templates.js"></script>
+    <!-- endbuild -->
+
+    <script src="components/bowser/bowser.min.js?inline"></script>
+
+    <script type="text/javascript">
+      var isBrowserCompatible = function() {
+        // Make IE pass if >= 9
+        if (bowser.msie && bowser.version >= 9) {
+          return true;
+        }
+
+        if (typeof window === 'undefined') {
+          return false;
+        }
+
+        // Checks related to Webworker compatibility
+        if (typeof window.Worker === 'undefined') {
+          console.log("GlobaLeaks startup failure: missing Webworker support");
+          return false;
+        }
+
+        // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
+        if (!(window.crypto && window.crypto.getRandomValues) &&
+            !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
+          console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+          return false;
+        }
+
+        return true;
+      };
+
+      function loadjsfile(filepath) {
+       var fileref = document.createElement('script');
+       fileref.setAttribute("type", "text/javascript");
+       fileref.setAttribute("src", filepath);
+       if (typeof fileref != "undefined") {
+         document.getElementsByTagName("head")[0].appendChild(fileref);
+       }
+      }
+ 
+      function start_globaleaks() {
+        if (isBrowserCompatible()) {
+          loadjsfile("js/scripts.js");
+        } else {
+          document.getElementById("BrowserSupported").style.display = "none";
+          document.getElementById("BrowserNotSupported").style.display = "block";
+        }
+      }
+      <!-- start_globaleaks(); -->
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+  <div class="col-md-9">
+    <div class="adminConfigSection" data-ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length > 0">
+      <div class="editorTitle">
+        <span data-translate>Configured recipients:</span>
+      </div>
+      <div class="receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
+        <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
+          <div class="configItem receiverItem">
+            <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+              <span class="col-md-7 editorHeaderTitle">
+                <span>{{receiver.name}}</span>
+              </span>
+              <span class="col-md-5">
+                <span class="pull-right">
+                  <button
+                    class="actionButton actionButtonReceiverEdit btn btn-xs btn-default"
+                    data-ng-show="!editing"
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
+                    <span data-translate>Edit</span>
+                  </button>
+                  <button
+                    class="actionButton actionButtonReceiverSave btn btn-xs btn-success"
+                    data-ng-show="editing"
+                    data-ng-click="save_receiver(receiver)">
+                    <span data-translate>Save</span>
+                  </button>
+                  <button
+                    class="actionButton actionButtonReceiverCancel btn btn-xs btn-default"
+                    data-ng-show="editing"
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
+                    <span data-translate>Cancel</span>
+                  </button>
+                  <span data-ng-if="admin.receivers.length > 1">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(receiver); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                      <i class="glyphicon glyphicon-menu-up"></i>
+                    </button>
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(receiver); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                      <i class="glyphicon glyphicon-menu-down"></i>
+                    </button>
+                  </span>
+                </span>
+              </span>
+            </div>
+            <div class="editor" data-ng-if="editing">
+              <hr />
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label data-translate>Configuration</label>
+                    <select class="form-control" data-ng-model="receiver.configuration">
+                      <option value="default" data-translate>Default</option>
+                      <option value="forcefully_selected" data-translate>Forcefully selected</option>
+                      <option value="unselectable" data-translate>Unselectable</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label data-translate>Contexts</label>
+                  <div class="selectionList">
+                    <div data-ng-repeat="context in admin.contexts">
+                      <div class="row" data-ng-click="toggle(context)">
+                        <span class="col-md-1">
+                          <span data-ng-show="isSelected(context)">
+                            <i class="glyphicon glyphicon-check"></i>
+                          </span>
+                          <span data-ng-show="!isSelected(context)">
+                            <i class="glyphicon glyphicon-unchecked"></i>
+                          </span>
+                        </span>
+                        <span class="col-md-10">{{context.name}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>UUID: {{receiver.id}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input data-ng-model="receiver.can_postpone_expiration" type="checkbox" data-ng-disabled="node.can_postpone_expiration" />
+                    <label data-translate>Allow the recipient to postpone the submission expiration date</label>
+                    <div data-ng-show="node.can_postpone_expiration">
+                      <span class="label label-info" data-translate>Enabled</span>
+                      <span data-translate>The setting is enabled at a global level.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input data-ng-model="receiver.can_delete_submission" type="checkbox" data-ng-disabled="node.can_delete_submission" />
+                    <label data-translate>Allow the recipient to delete submissions</label>
+                    <div data-ng-show="node.can_delete_submission">
+                      <span class="label label-info" data-translate>Enabled</span>
+                      <span data-translate>The setting is enabled at a global level.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input data-ng-model="receiver.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
+                    <label data-translate>Allow the recipient to grant permissions to whistleblowers on specific submissions</label>
+                    <div data-ng-show="node.can_grant_permissions">
+                      <span class="label label-info" data-translate>Enabled</span>
+                      <span data-translate>The setting is enabled at a global level.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

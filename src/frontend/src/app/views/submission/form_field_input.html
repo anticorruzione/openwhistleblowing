@@ -1,0 +1,122 @@
+<div data-ng-form="f" class="submissionFieldInput">
+  <div data-ng-switch="field.key">
+    <div data-ng-switch-when="whistleblower_identity">
+      <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
+    </div>
+    <div data-ng-switch-default data-ng-switch="field.type">
+      <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
+        <textarea id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+                  data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
+                  name="input-{{entryIndex}}"
+                  class="form-control inputelem"
+                  data-ng-model="entry['value']"
+                  data-ng-minlength="field.attrs.min_len.value"
+                  maxlength="{{maxlength}}"
+                  rows="3"
+                  data-ng-required="field.required"
+                  data-ng-attr-placeholder="{{field.placeholder}}"></textarea>
+        <div>
+          <div data-ng-if="maxlength >= 0 && (maxlength - entry['value'].length) <= 50"
+               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
+               data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+          <div class="text-red"
+               data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
+               data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
+               data-translate>FIELD_INPUT_MIN_CHARS</div>
+        </div>
+      </div>
+      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
+        <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
+          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+            <input class="inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+            <span>{{::option.label}}</span>
+          </label>
+        </div>
+      </div>
+      <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
+        <select id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="field.required">
+          <option style="display:none" value=""></option>
+          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{::option.label}}</option>
+        </select>
+      </div>
+      <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
+        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
+          <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
+            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+                   name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
+                   class="inputelem"
+                   data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
+                   data-ng-model="entry[option.id]"
+                   data-ng-required="field.required_check"
+                   data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
+                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
+                   type="checkbox" />
+            {{::option.label}}
+          </label>
+        </div>
+      </div>
+      <div data-ng-switch-when="date" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$invalid}">
+        <div class="input-group">
+          <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+                 name="input-{{entryIndex}}"
+                 class="form-control inputelem"
+                 data-ng-model="entry['value']"
+                 maxlength="{{node.maximum_namesize}}"
+                 data-ng-required="field.required"
+                 data-ng-attr-placeholder="{{field.placeholder}}"
+                 type="text"
+                 uib-datepicker-popup=""
+                 is-open="status.opened"
+                 readonly="readonly"
+                 show-button-bar="false" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" data-ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </div>
+      </div>
+      <div data-ng-switch-when="tos">
+        <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.clause.value}}</div>
+        <div class="checkbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
+          <label>
+            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+                   name="input-{{entryIndex}}"
+                   class="inputelem"
+                   data-ng-model="entry['value']"
+                   data-ng-required="field.required"
+                   value="{{field.value}}"
+                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
+                   type="checkbox" />
+            <span class="TOS">{{field.attrs.agreement_statement.value}}</span>
+          </label>
+        </div>
+      </div>
+      <div data-ng-switch-when="fileupload">
+        <div id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" data-ng-include="'views/partials/fileupload_button.html'"></div>
+      </div>
+      <div data-ng-switch-when="fieldgroup">
+        <div data-ng-include="'views/submission/form.html'"></div>
+      </div>
+      <div data-ng-switch-default data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
+        <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+               name="input-{{entryIndex}}"
+               class="form-control inputelem"
+               data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"
+               data-ng-model="entry['value']"
+               data-ng-minlength="field.attrs.min_len.value"
+               maxlength="{{maxlength}}"
+               data-ng-required="field.required"
+               data-ng-attr-placeholder="{{field.placeholder}}"
+               type="text" />
+        <div>
+          <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
+               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
+               data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+          <div class="text-red"
+               data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
+               data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
+               data-translate>FIELD_INPUT_MIN_CHARS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

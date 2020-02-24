@@ -1,0 +1,43 @@
+<div data-ng-controller="WBFileUploadCtrl" data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
+  <div flow-init="{target: fileupload_url, headers: get_auth_headers}" flow-file-added="onFileAdded($event, $file, $flow)" flow-files-submitted="$flow.pause()" flow-name="uploads[fileinput]">
+    <span data-ng-if="field === undefined || field.multi_entry">
+      <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
+        <i class="glyphicon glyphicon-paperclip"></i>
+        <span data-translate>Add file</span>
+      </button>
+    </span>
+    <span data-ng-if="field !== undefined && !field.multi_entry && (session === null || session.role !== 'receiver')">
+      <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
+        <i class="glyphicon glyphicon-paperclip"></i>
+        <span data-translate>Add file</span>
+      </button>
+    </span>
+    <span data-ng-if="session !== null && session.role === 'receiver'">
+      <br>
+      <label>
+          Descrizione
+        </label><br>
+        <textarea class="form-control" id="descrizione-file" ng-model="file_description" ng-change="changeValue($flow)"></textarea>
+      <br>
+      <b>Destinatario:</b><br>
+      <select data-ng-model="interno" id="select-destinatario" ng-change="changeValue($flow)">
+        <option value="segnalante">Segnalante</option>
+        <option value="interno">Interno</option>
+      </select>
+      <!--
+      <label>
+        <input type="radio" id="interno" data-ng-model="$flow.opts.target" data-ng-value="'rtip/upload/'+tip_id+'?description='+file_description"> Interno
+      </label><br>
+      <label>
+        <input type="radio" id="segnalante" data-ng-model="$flow.opts.target" data-ng-value="'wbtip/upload/'+tip_id+'?description='+file_description"> Segnalante
+      </label>
+      -->
+      <br>
+      <br>
+      <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
+        <i class="glyphicon glyphicon-paperclip"></i>
+        <span data-translate>Add file</span>
+      </button>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,208 @@
+/** Receiver selection page **/
+#ContextSelectorPick, #ContextIntroductionBox {
+  margin-bottom: 10px;
+}
+
+#ContextSelectorPick .form-control {
+  width: auto;
+}
+
+#ContextIntroductionBox {
+  font-size: 18px;
+}
+
+.receiverCards {
+  position: relative;
+}
+
+.receiverCard {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.receiverCard.selected {
+  background-color: #fcf8e3;;
+}
+
+.receiverCard.disabled {
+  background-color: #f2dede;
+}
+
+.fieldsRow {
+  margin-bottom: 15px;
+}
+
+.fieldAnswerEntry {
+  margin-top: 15px;
+}
+
+.fieldAnswerEntryFirst {
+  margin-top: 0px;
+}
+
+.fieldAnswerEntryLast {
+  margin-bottom: 10px;
+}
+
+.fieldAnswerEntryLabel:after {
+  content:'';
+  display:block;
+  clear: both;
+}
+
+.submissionFieldInput {
+  padding-left: 10px;
+}
+
+#StepTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#ReceiverSelectionBoxBig .receiverCardTitle {
+  font-size: 20px;
+}
+
+#ReceiverSelectionBoxBig .receiverCard {
+  margin-bottom: 20px;
+}
+
+.fileName {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.imgPreview {
+  height: 120px;
+  width: 120px;
+}
+
+.imgPreview img {
+  height: 100%;
+  width: 100%;
+}
+
+.fileUploadIcon {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 40px;
+ color: white;
+}
+
+#MaxSelectableReceiverBox {
+  margin-bottom: 30px;
+}
+
+#KeyCodeThanks1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#KeyCodeThanks2 {
+  font-size: 24px;
+}
+
+#KeyCodeBox {
+  background-color: #F5F5F5;
+  border: 1px solid #222;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+#KeyCodeHintBox {
+  position: relative;
+  padding: 10px;
+  background: #FFF;
+  border-radius: 10px;
+  margin-left: 30px;
+  border: 1px solid rgb(204, 204, 204);
+  box-shadow: 2px 1px 5px #888888;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#KeyCodeHintBox:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent #ccc;
+  display: block;
+  width: 0;
+  left: -15px;
+  top: 17px;
+  z-index: 1;
+}
+
+#Receipt {
+  padding-bottom: 20px;
+}
+
+#ReceiptButton {
+  font-size: 16px;
+}
+
+#KeyCode {
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #FFF;
+  border-radius: 15px;
+  direction: ltr;
+}
+
+#StepNavBar, .SubmissionNavButton {
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+#FileUploadsHeader {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.fileuploadprogress {
+  position: relative;
+  width: 120px;
+  bottom: 0px;
+}
+
+#ContextDescription, .FieldDescription {
+  color: #777;
+}
+
+.TOS {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.radio label, .checkbox label {
+  display: block;
+}
+
+.cc-text-1 {
+  font-size: 35px;
+}
+
+.cc-text-2 {
+  font-size: 20px;
+}

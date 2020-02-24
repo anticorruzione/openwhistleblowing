@@ -1,0 +1,89 @@
+<div data-ng-controller="TipCtrl" data-ng-init="workflow=1">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <a id="link-tiplist" 
+                    href="#!/receiver/tips" 
+                    popover="{{'Tips' | translate}}" 
+                    popover-placement="top" 
+                    popover-trigger="mouseenter"
+                    class="btn btn-default">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </a>
+
+                <span id="tip-action-postpone" 
+                    data-ng-if="preferences.can_postpone_expiration" 
+                    data-ng-click="tip_postpone()" 
+                    popover="{{'Postpone tip expiration date' | translate}}"
+                    popover-placement="top" 
+                    popover-trigger="mouseenter" 
+                    class="btn btn-default">
+                    <i class="glyphicon glyphicon-time"></i>
+                </span>
+
+                <span id="tip-action-delete" 
+                    data-ng-if="preferences.can_delete_submission" 
+                    data-ng-click="tip_delete()" 
+                    popover="{{'Delete tip' | translate}}"
+                    popover-placement="top" 
+                    popover-trigger="mouseenter" 
+                    class="btn btn-default">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </span>
+
+                <span id="link-reload" 
+                    data-ng-click="reload()" 
+                    popover="{{'Refresh page' | translate}}" 
+                    popover-placement="top" 
+                    popover-trigger="mouseenter"
+                    class="btn btn-default">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </span>
+            </div>
+
+            <div class="pull-right">
+                <a id="link-preferences" 
+                    data-ng-click="workflow=workflow==4?4:workflow+1" 
+                    class="btn btn-default">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Data Richiesta</th>
+                        <th class="col-md-2">Utente Richiedente</th>
+                        <th class="col-md-5">Motivazione Richiesta</th>
+                        <th class="col-md-3">Stato Autorizzazione</th>
+                    </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-md-2">03/07/2015</td>
+                        <td class="col-md-2">Utente2</td>
+                        <td class="col-md-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer faucibus ipsum eu ex congue congue. Nullam quis lacus bibendum, posuere eros non, convallis felis. Pellentesque egestas ut elit eget ultricies. Pellentesque venenatis massa in enim malesuada aliquam mattis nec urna. Aliquam tempor eu erat volutpat aliquam. Aliquam blandit pulvinar sem, ac auctor augue egestas ut. Aliquam quis ligula ut dolor tincidunt maximus vitae ut nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque malesuada mauris ligula, eu ultrices nisl aliquet quis. Sed tempus tortor id urna hendrerit aliquet. Fusce ac ultrices risus. Mauris velit mauris, fringilla quis ultricies id, tempor a tortor. Sed tempor porta fringilla. Nam nec iaculis risus, non congue enim. Nulla nec quam id velit aliquet euismod.</td>
+                        <td class="col-md-3">Pendente:&nbsp;<button class="btn btn-xs btn-primary">Autorizza</button>&nbsp;<button class="btn btn-xs btn-danger">Nega</button></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">03/07/2015</td>
+                        <td class="col-md-2">Utente2</td>
+                        <td class="col-md-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat eget ex fringilla, vel rutrum velit scelerisque. Maecenas eleifend vitae tortor vel blandit. Vestibulum magna enim, mattis a nibh eget, sodales volutpat dui. Morbi at rutrum magna. Mauris ut hendrerit ex, vitae mollis urna. Nam interdum diam eu ante bibendum imperdiet. Quisque congue dictum neque vitae pellentesque.</td>
+                        <td class="col-md-3">Non Autorizzata</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-2">02/07/2015</td>
+                        <td class="col-md-2">Utente1</td>
+                        <td class="col-md-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed aliquet elit. Etiam condimentum leo ac congue sagittis. Nullam non elit libero. Integer rhoncus tortor arcu, id lobortis sem euismod eu. Integer pellentesque pulvinar lacus, eu scelerisque ante posuere at. Quisque velit justo, consectetur nec hendrerit et, fermentum in nunc. Pellentesque nec lectus ultrices felis tincidunt facilisis.</td>
+                        <td class="col-md-3">Autorizzata</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

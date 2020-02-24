@@ -1,0 +1,45 @@
+{
+  "name": "GlobaLeaks",
+  "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
+  "version": "2.60.144",
+  "license": "AGPL-3.0",
+  "author": "Random GlobaLeaks Developers",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:globaleaks/GlobaLeaks.git"
+  },
+  "dependencies": {
+    "bower": "*",
+    "bufferutil": "^4.0.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "coveralls": "2.11.8",
+    "grunt": "0.4.5",
+    "grunt-angular-templates": "1.0.3",
+    "grunt-bower-task": "0.4.0",
+    "grunt-concat-css": "0.3.1",
+    "grunt-confirm": "1.0.5",
+    "grunt-contrib-clean": "1.0.0",
+    "grunt-contrib-concat": "1.0.0",
+    "grunt-contrib-connect": "1.0.0",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.0",
+    "grunt-contrib-jshint": "1.0.0",
+    "grunt-istanbul": "0.7.0",
+    "grunt-line-remover": "0.0.2",
+    "grunt-inline-alt": "0.3.10",
+    "grunt-manifest": "0.4.4",
+    "grunt-protractor-coverage": "0.2.17",
+    "grunt-protractor-runner": "3.0.0",
+    "grunt-string-replace": "1.2.1",
+    "grunt-usemin": "3.1.1",
+    "mocha": "2.4.5",
+    "node-gettext": "0.2.14",
+    "protractor": "3.1.1",
+    "selenium-webdriver": "2.52.0",
+    "should": "8.2.2",
+    "superagent": "1.8.0",
+    "supertest": "1.2.0"
+  }
+}

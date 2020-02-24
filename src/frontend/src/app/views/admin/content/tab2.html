@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label data-translate>Current project logo</label>
+      <div class="imageUpload"
+           flow-init="{target: getUploadUrl('admin/staticfiles/logo'), headers: get_auth_headers()}"
+           flow-file-added="onFileAdded($event, $file, $flow)"
+           flow-files-submitted="$flow.upload()"
+           flow-file-success="reload()">
+        <div data-ng-controller="AdminImgUploadCtrl">
+          <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
+            <div flow-btn>
+              <span class="col-md-12 changePicture">
+                <span data-translate>Change picture</span>
+              </span>
+              <img data-ng-src="{{app_logo}}" class="img-thumbnail baseimage">
+            </div>
+          </div>
+          <div data-ng-if="file_upload_error" class="text-red"><span data-translate>Error:</span> <span>{{file_upload_error}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
+        <span data-translate>Graphics customization</span>
+        (<span data-translate>CSS</span>)
+      </label>
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/custom_stylesheet'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
+          <div class="btn btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </div>
+        </span>
+        <span data-ng-if="fileExists('custom_stylesheet.css')">
+          <a class="btn btn-primary" href="s/custom_stylesheet.css" download="custom_stylesheet.css">
+            <span class="glyphicon glyphicon-download"></span>
+            <span data-translate>Download</span>
+          </a>
+          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_stylesheet.css')">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span data-translate>Delete</span>
+          </a>
+        </span>
+      </div>
+      <label>
+        <span data-translate>Graphics customization</span>
+        (<span data-translate>Home Page</span>)
+      </label>
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/custom_homepage'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
+          <div class="btn btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </div>
+        </span>
+        <span data-ng-show="fileExists('custom_homepage.html')">
+          <a class="btn btn-primary" href="s/custom_homepage.html" download="custom_homepage.html">
+            <span class="glyphicon glyphicon-download"></span>
+            <span data-translate>Download</span>
+          </a>
+          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_homepage.html')">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span data-translate>Delete</span>
+          </a>
+        </span>
+      </div>
+      <label data-translate>Upload custom file</label>
+      <br />
+      <span data-translate>The file will be available at URL: /s/$filename</span>
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/customization'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
+          <div class="btn btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </div>
+        </span>
+      </div>
+      <label data-translate>Files</label>
+      <br />
+      <div class="table-container">
+        <table data-ng-show="staticfiles" class="table table-striped" id="fileList">
+          <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
+            <tr>
+              <td>{{file.filename}}</td>
+              <td>
+                <a class="btn btn-primary" data-ng-href="s/{{file.filename}}" download="{{file.filename}}">
+                  <span class="glyphicon glyphicon-download"></span>
+                  <span data-translate>Download</span>
+                </a>
+                <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/' + file.filename)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <span data-translate>Delete</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

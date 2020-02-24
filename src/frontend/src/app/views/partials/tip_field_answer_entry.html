@@ -1,0 +1,39 @@
+<div data-ng-switch="" on="field.type" class="nested">
+  <span data-ng-switch-when="checkbox">
+    <ul data-ng-repeat="(k, v) in entry">
+      <div data-ng-repeat="option in field.options">
+        <div data-ng-if="k == option.id && v == 'True'">
+          <i class="glyphicon glyphicon-check"></i>
+          <span>{{option.label}}</span>
+        </div>
+      </div>
+    </ul>
+  </span>
+
+  <span data-ng-switch-when="selectbox">
+    <div data-ng-repeat="option in field.options">
+      <span data-ng-if="entry['value'] == option.id">{{option.label}}</span>
+    </div>
+  </span>
+
+  <span data-ng-switch-when="multichoice">
+    <div data-ng-repeat="option in field.options">
+      <span data-ng-if="entry['value'] == option.id">{{option.label}}</span>
+    </div>
+  </span>
+
+  <span data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
+
+  <span data-ng-switch-when="tos">
+    <span data-ng-if="entry['value'] == 'True'" data-translate>Accepted</span>
+    <span data-ng-if="entry['value'] == 'False'" data-translate>Not accepted</span>
+  </span>
+
+  <span data-ng-switch-when="fieldgroup">
+    <div data-ng-repeat="field in field.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
+      <div data-ng-init="fieldAnswers=entry" data-ng-include="'views/partials/tip_field.html'"></div>
+    </div>
+  </span>
+
+  <span data-ng-switch-default class="preformatted">{{entry['value']}}</span>
+</div>

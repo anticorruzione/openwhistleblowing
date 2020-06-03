@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>owb</name>
   <description>owb installation rpm for RHEL 7.x</description>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -72,7 +72,7 @@
               <filemode>755</filemode>
               <sources>
                 <source>
-                  <location>${basedir}/src/frontend/</location>
+                  <location>${basedir}/src/frontend/build/</location>
                 </source>
               </sources>
             </mapping>
@@ -84,6 +84,7 @@
                   <location>${basedir}/src/backend/var/owb</location>
                 </source>
               </sources>
+              <configuration>noreplace</configuration>
             </mapping>
           </mappings> 
           <provides>

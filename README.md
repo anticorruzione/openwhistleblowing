@@ -2,8 +2,8 @@
 
 ## Introduzione
 Questo repository contiene il codice sorgente e il binario pronto per
-l'installazione di Openwhistleblowing (release 1.0.1), il software fornito per
-il riuso dall'ANAC (Autoritá Nazionale Anti Corruzione).
+l'installazione di Openwhistleblowing (release 1.0.2), il software fornito per
+l'utilizzo interno di ANAC (Autoritá Nazionale Anti Corruzione).
 
 ## Installazione
 Al fine di consentire la piú ampia personalizzazione alle Amministrazioni
@@ -28,9 +28,9 @@ oppure lanciando manualmente le seguenti istruzioni:
 ```bash
 cd openwhistleblowing
 yum -y install epel-release
-yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum -y install postgresql96-devel
-yum -y install ../../binary/owb-1.0.1-1.x86_64.rpm &> /dev/null
+yum -y install binary/owb-1.0.2-1.x86_64.rpm &> /dev/null
 ```
 La configurazione del tool inizialmente puó essere effettuata mediante l'utilizzo dello script
 presente in src/scripts/setup.sh . Per ulteriori opzioni di configurazioni, riferirsi alla documentazione
@@ -55,7 +55,7 @@ il container accetta due variabili d'ambiente:
 | nome                      |   valore  |
 |---------------------------|:---------:|
 | EXTERNAL_HOSTNAME         |  stringa  |
-| DISABLE_MAIL_NOTIFICATION |   0 o 1   |
+| DISABLE_MAIL_NOTIFICATION |     0     |
 
 la prima, permette di inserire l'hostname con il quale viene raggiunto il servizio (e.g. myhost.mydomain.local),
 la seconda, permette di abilitare il servizio di invio delle email (di default disabilitato).
@@ -81,3 +81,8 @@ mvn package
 ```
 alla fine dell'esecuzione il nuovo rpm generato si troverà nel path:
 *target/rpm/owb/RPMS/x86_64/*
+
+## Aggiornamento
+L'aggiornamento va eseugito, utilizzando uno dei metodi di installazione descritti
+nel paragrafo Installazione e seguendo le eventuali istruzioni presenti nel file
+RELEASE_NOTES.md

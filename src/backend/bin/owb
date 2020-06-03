@@ -64,7 +64,7 @@ def pip_version_check(path):
                             unmet_requirements.append([requirement, installed_version])
 
     if unmet_requirements:
-        print("Some Owb requirements are unmet\n")
+        print("Some GlobaLeaks requirements are unmet\n")
         print("Unmet requirements:")
         for unmet_requirement_desc in unmet_requirements:
             if unmet_requirement_desc[1] != "":
@@ -73,10 +73,11 @@ def pip_version_check(path):
                 print("\t", unmet_requirement_desc[0])
         print("\n")
         print("The problem can be solved by:")
-        print("Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/local/owb/backend/usr/share/requirements.txt")
+        print("1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki")
+        print("2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/backend/requirements.txt")
         quit(-1)
 
-print("Starting Owb")
+print("Starting GlobaLeaks")
 
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
@@ -173,16 +174,24 @@ GLSettings.parser.add_option("-c", "--start-clean", action='store_true',
     dest="start_clean", default=False)
 
 GLSettings.parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current owb process (if exists)",
+    help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
 GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
-    help="skip owb installation wizard' [default: False]",
+    help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard", default=False)
 
+GLSettings.parser.add_option("-A", "--api-prefix", type='string',
+    help="specify an API prefix",
+    dest="api_prefix", default='')
+
 GLSettings.parser.add_option("-C", "--client-path", type='string',
-    help="specify GLClient path",
+    help="specify client path",
     dest="client_path", default=None)
+
+GLSettings.parser.add_option("-P", "--disable-swap", action='store_true',
+    help="disable process swap [default: False]",
+    dest="disable_swap", default=False)
 
 GLSettings.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used as ramdisk storage",
@@ -191,10 +200,6 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
 GLSettings.parser.add_option("-z", "--devel-mode", type='string',
     help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
     dest="developer_name")
-
-GLSettings.parser.add_option("--XXX", type='string',
-    help="hardcore debug only options: check NOTES.md file (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="xxx")
 
 GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
@@ -217,8 +222,8 @@ GLSettings.parser.add_option("-v", "--version", action='store_true',
 (GLSettings.cmdline_options, args) = GLSettings.parser.parse_args()
 
 if GLSettings.cmdline_options.version:
-    print("Owb Version:", GLSettings.version_string)
-    print("Owb DB version:", DATABASE_VERSION)
+    print("GlobaLeaks Version:", GLSettings.version_string)
+    print("GlobaLeaks DB version:", DATABASE_VERSION)
     quit()
 
 GLSettings.load_cmdline_options()
@@ -234,7 +239,7 @@ if GLSettings.cmdline_options.kill:
 
 if GLSettings.start_clean:
     if GLSettings.devel_mode or \
-      query_yes_no("Owb --start-clean is going to delete %s\nAre you sure?" % GLSettings.working_path, "no"):
+      query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSettings.working_path, "no"):
         GLSettings.remove_directories()
 
 os.umask(077)
@@ -249,9 +254,6 @@ if GLSettings.nodaemon:
 
 args +=['--pidfile', GLSettings.pidfile_path]
 
-# we disable twistd logging as we manage only a owb controlled logging
-args +=['--logfile', os.devnull]
-
 sys.argv[1:] = args
 
 def run_backend():
@@ -264,19 +266,19 @@ def run_backend():
     else:
         GLSettings.initialize_db = False
 
-    print("Owb is now running and accessible at the following urls:")
+    print("GlobaLeaks is now running and accessible at the following urls:")
+
+    path = GLSettings.api_prefix
 
     for ip in GLSettings.bind_addresses:
-        print("- http://%s:%d" % (ip, GLSettings.bind_port))
+        print("- http://%s:%d%s" % (ip, GLSettings.bind_port, path))
 
     for host in GLSettings.accepted_hosts:
         if host not in GLSettings.bind_addresses:
-            print("- http://%s:%d" % (host, GLSettings.bind_port))
+            print("- http://%s:%d%s" % (host, GLSettings.bind_port, path))
 
     if GLSettings.tor_address is not None:
-        print("- http://%s" % (GLSettings.tor_address))
-
-    log.start_logging()
+        print("- http://%s%s" % (GLSettings.tor_address, path))
 
     sys.excepthook = mail_exception_handler
 
@@ -291,9 +293,9 @@ def run_backend():
 
             # this is a blocking operation, until app exit
 
-            print("Exiting Owb")
+            print("Exiting GlobaLeaks")
         except Exception as excep:
-            print("Unable to start Owb: %s" % excep)
+            print("Unable to start GlobaLeaks: %s" % excep)
             quit(-1)
 
 # "And now his watch begins"

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
   <head>
     <title data-ng-bind="node.name">GlobaLeaks</title>
@@ -11,7 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11,10,9" />
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
+    <script>
+      window.__PUBLIC_PATH__ = 'fonts';
+    </script>
     <link rel="stylesheet" data-ng-href="{{app_stylesheet}}">
   </head>
 
@@ -20,7 +22,7 @@
       #LoadingOverlay {
         position: fixed;
         width: 100%;
-        height:100%;
+        height: 100%;
         display: flex;
         align-items: center;
         top: 0;
@@ -36,8 +38,8 @@
         display: flex;
         align-items: center;
         font-size: 48px;
-        background-color: #FFF;
-        border: 1px solid #DDD;
+        background-color: #fff;
+        border: 1px solid #ddd;
         border-radius: 10px 10px 10px 10px;
         -moz-border-radius: 10px 10px 10px 10px;
         -webkit-border-radius: 10px 10px 10px 10px;
@@ -45,10 +47,10 @@
 
       #LoaderBoxContent {
         margin: 0 auto;
-        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 48px;
         color: #555;
-        background-color: #FFF;
+        background-color: #fff;
       }
 
       .gly-spin {
@@ -78,7 +80,12 @@
         }
       }
 
-      [ng\:cloak], [ng-cloak], [ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      [ng\:cloak],
+      [ng-cloak],
+      [ng-cloak],
+      [x-ng-cloak],
+      .ng-cloak,
+      .x-ng-cloak {
         display: none !important;
       }
 
@@ -93,22 +100,20 @@
         <h1>Error! :(</h1>
         <br /><br />
         <p>
-          Your browser is not running Javascript that is required to
-          use the whistleblowing client.<br /><br />
+          Your browser is not running Javascript that is required to use the whistleblowing client.<br /><br />
 
-          It's common believe that Javascript and security don't sound
-          well together, for this reason we suggest to use the Tor Browser,
-          an extremely tuned FireFox browser with Tor integrated.
-
-          Here you can found and download the latest release of:
+          It's common believe that Javascript and security don't sound well together, for this reason we suggest to use
+          the Tor Browser, an extremely tuned FireFox browser with Tor integrated. Here you can found and download the
+          latest release of:
           <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>.
         </p>
       </div>
     </noscript>
 
-    <div id="BrowserNotSupported" class="preload_error" style="display: none">
+    <div id="BrowserNotSupported" class="preload_error" style="display: none;">
       <div>
-        <h1>[EN] Warning! :(</h1><br /><br />
+        <h1>[EN] Warning! :(</h1>
+        <br /><br />
         <div>
           You are running an unsupported (and potentially vulnerable) browser.<br /><br />
           You are strongly advised to download and install the
@@ -124,19 +129,21 @@
             <li>Internet Explorer &gt;= 11</li>
           </ul>
 
-          Please note that the above browers, even if supported, does not benefit of the same high anonimity guarantees of the Tor Browser.
+          Please note that the above browers, even if supported, does not benefit of the same high anonimity guarantees
+          of the Tor Browser.
         </div>
       </div>
       <br /><br />
       <div>
-        <h1>[IT] Attenzione! :(</h1><br /><br />
+        <h1>[IT] Attenzione! :(</h1>
+        <br /><br />
         <div>
           Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
           Si invita caldamente a scaricare ed installare il
           <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
           al fine di accedere a questa piattaforma di whistleblowing in modo sicuro ed anonimo.<br />
 
-          La  seguente è  la lista degli altri browser supportati:<br />
+          La seguente è la lista degli altri browser supportati:<br />
           <ul>
             <li>Mozilla Firefox &gt;= 21</li>
             <li>Google Chrome &gt;= 11</li>
@@ -145,13 +152,14 @@
             <li>Internet Explorer &gt;= 11</li>
           </ul>
 
-          Si prega di notare che i browser sopra citati, anche se supportati, non beneficiano delle stesse garanzie di anonimato e sicurezza offerte dal Tor Browser.
+          Si prega di notare che i browser sopra citati, anche se supportati, non beneficiano delle stesse garanzie di
+          anonimato e sicurezza offerte dal Tor Browser.
         </div>
       </div>
     </div>
 
     <div id="BrowserSupported">
-      <div id="LoadingOverlay"  data-ng-hide="started && !showLoadingPanel">
+      <div id="LoadingOverlay" data-ng-hide="started && !showLoadingPanel">
         <div id="LoaderBox" class="ng-cloak">
           <div id="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>
@@ -210,7 +218,7 @@
          document.getElementsByTagName("head")[0].appendChild(fileref);
        }
       }
- 
+
       function start_globaleaks() {
         if (isBrowserCompatible()) {
           loadjsfile("js/scripts.js");
@@ -221,6 +229,5 @@
       }
       start_globaleaks();
     </script>
-
   </body>
 </html>

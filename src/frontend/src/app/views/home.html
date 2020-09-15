@@ -1,7 +1,9 @@
 <div id="HomePageBox">
   <div id="HomePageBoxHeader">
     <div id="HomePageBoxNodePresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
-    <div id="HomePageBoxNodeDescription" data-ng-if="node.description">{{::node.description}}</div>
+    <div id="wrapper" data-ng-if="node.description">
+      <h1 class="mt-4 text-primary">{{::node.description}}</h1>
+    </div>
   </div>
 
   <div id="WhistleblowerBox" class="row">
@@ -23,18 +25,20 @@
         </p>
       </div>
       <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.tor2web_whistleblower || anonymous)">
-        <div id="WhistleblowerSubmitBox">
-          <div id="WhistleblowerSubmitBoxHeader">
-            <span>{{::node.whistleblowing_question}}</span>
-          </div>
-          <div id="WhistleblowerSubmitBoxButton">
-            <a data-ng-click="goToSubmission()" class="btn btn-primary">
-              <i class="glyphicon glyphicon-bullhorn"></i>
-              <span>{{::node.whistleblowing_button}}</span>
-            </a>
+        <div class="col-12">
+          <div id="WhistleblowerSubmitBox">
+            <div id="WhistleblowerSubmitBoxHeader">
+              <span>{{::node.whistleblowing_question}}</span>
+            </div>
+            <div id="WhistleblowerSubmitBoxButton">
+              <a data-ng-click="goToSubmission()" class="btn btn-primary">
+                <i class="glyphicon glyphicon-bullhorn"></i>
+                <span>{{::node.whistleblowing_button}}</span>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="center-block">
+        <div class="col-12 center-block">
           <span data-ng-include="'views/partials/wb_login_box.html'"></span>
         </div>
       </div>

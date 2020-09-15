@@ -8,17 +8,22 @@ html {
 }
 
 body {
-  background-color: #FFF;
+  background-color: #fff;
 
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
-a, a:hover, a:active, a:focus {
+a,
+a:hover,
+a:active,
+a:focus {
   outline: 0;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   padding-bottom: 10px;
 }
 
@@ -31,7 +36,9 @@ th {
   color: #428bca;
 }
 
-.title1, .title2, .title3 {
+.title1,
+.title2,
+.title3 {
   margin-top: 10px;
   margin-bottom: 20px;
   line-height: 1.1;
@@ -52,15 +59,16 @@ th {
 
 #HeaderBox {
   overflow: hidden;
-  color: #FFF;
+  color: #fff;
   background: #428bca;
   border-bottom: 1px solid #357ebd;
   padding: 15px;
 }
 
-#HeaderBox:after, #HeaderBox:after {
+#HeaderBox:after,
+#HeaderBox:after {
   clear: both;
-  content: "";
+  content: '';
   display: block;
 }
 
@@ -98,14 +106,16 @@ th {
   margin-top: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid #E5E5E5;
-  background-color: #F5F5F5;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
   color: #777;
   text-align: center;
   font-size: 20px;
 }
 
-#LogoBox, #TitleBox, #UserBox {
+#LogoBox,
+#TitleBox,
+#UserBox {
   position: relative;
   margin-left: 20px;
   margin-right: 20px;
@@ -147,7 +157,7 @@ th {
 #LoginStatusBox {
   color: #000;
   padding: 15px;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 7px;
 }
 
@@ -165,15 +175,15 @@ th {
 /** Submission details **/
 
 .keycode {
-    text-align: center;
+  text-align: center;
 }
 .keycode h2 {
-    font-family: sans-serif
+  font-family: sans-serif;
 }
 
 #PrivacyBadgeBox {
   background-color: #222;
-  color: #FFF;
+  color: #fff;
   font-size: 16px;
   padding: 10px 20px 10px 20px;
 }
@@ -293,7 +303,7 @@ th {
 }
 
 .LanguageSelected {
-  background-color: #EEE;
+  background-color: #eee;
 }
 
 .nested {
@@ -337,7 +347,7 @@ th {
 }
 
 .text-gray {
-  color: #AAA;
+  color: #aaa;
 }
 
 .text-red {

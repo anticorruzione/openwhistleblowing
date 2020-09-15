@@ -4429,11 +4429,11 @@ GLClient.controller('TipCtrl',
     $scope.tipReceivers = [];
 
     $http.get('/tipstatus').then(function(data){
-      $scope.tipStates = data.data;
+      $scope.tipStates = data;
     });
 
     $http.get('/receivers').then(function(data){
-      $scope.tipReceivers = data.data;
+      $scope.tipReceivers = data;
     });
 
 
@@ -10841,11 +10841,11 @@ angular.module('GLClient').run(['$templateCache', function($templateCache) {
     '          <td>{{::tip.update_date | date:\'dd-MM-yyyy HH:mm\'}}</td>\n' +
     '          <td>{{::tip.expiration_date | date:\'dd-MM-yyyy HH:mm\'}}</td>\n' +
     '          <td>\n' +
-    '            <span data-ng-if="!tip.tor2web"\n' +
+    '            <span data-ng-if="tip.tor2web"\n' +
     '                class="label label-warning"\n' +
     '                uib-popover="{{\'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                data-translate>HTTPS</span>\n' +
-    '            <span data-ng-if="tip.tor2web"\n' +
+    '            <span data-ng-if="!tip.tor2web"\n' +
     '                class="label label-success"\n' +
     '                uib-popover="{{\'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                data-translate>Tor</span>\n' +
@@ -11615,11 +11615,11 @@ angular.module('GLClient').run(['$templateCache', function($templateCache) {
     '          <td>{{::tip.comment_counter}}</td>\n' +
     '          <td>{{::tip.message_counter}}</td>\n' +
     '          <td>\n' +
-    '            <span data-ng-if="!tip.tor2web"\n' +
+    '            <span data-ng-if="tip.tor2web"\n' +
     '                  class="label label-warning"\n' +
     '                  uib-popover="{{\'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                  data-translate>HTTPS</span>\n' +
-    '            <span data-ng-if="tip.tor2web"\n' +
+    '            <span data-ng-if="!tip.tor2web"\n' +
     '                  class="label label-success"\n' +
     '                  uib-popover="{{\'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                  data-translate>Tor</span>\n' +
@@ -12211,11 +12211,11 @@ angular.module('GLClient').run(['$templateCache', function($templateCache) {
     '          <td>{{::tip.comment_counter}}</td>\n' +
     '          <td>{{::tip.message_counter}}</td>\n' +
     '          <td>\n' +
-    '            <span data-ng-if="!tip.tor2web"\n' +
+    '            <span data-ng-if="tip.tor2web"\n' +
     '                  class="label label-warning"\n' +
     '                  uib-popover="{{\'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                  data-translate>HTTPS</span>\n' +
-    '            <span data-ng-if="tip.tor2web"\n' +
+    '            <span data-ng-if="!tip.tor2web"\n' +
     '                  class="label label-success"\n' +
     '                  uib-popover="{{\'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.\' | translate}}" popover-placement="right" popover-trigger="mouseenter"\n' +
     '                  data-translate>Tor</span>\n' +

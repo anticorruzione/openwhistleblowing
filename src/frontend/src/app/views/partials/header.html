@@ -1,20 +1,94 @@
-<div id="HeaderBoxContent">
-  <div id="HeaderBoxContentLeft">
-    <div id="LogoBox">
-      <a href="#!/"><img data-ng-src="{{app_logo}}"></a>
-    </div>
-    <div id="TitleBox">
-      <div id="titleboxdefault">
-        <div id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</div>
-        <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{header_subtitle | translate}}</div>
-      </div>
-      <div id="titleboxoneline">
-        <span id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</span>
-        <span id="PageSubtitle" data-ng-if="hasSubtitle()">- <span>{{header_subtitle | translate}}</span></span>
+<header class="it-header-wrapper it-header-sticky">
+  <div class="it-header-slim-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="it-header-slim-wrapper-content">
+            <span></span>
+            <!-- Start mobile navigation -->
+            <!-- End mobile navigation -->
+
+            <div class="it-header-slim-right-zone"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div id="HeaderBoxContentRight">
-    <span id="UserBox" class="pull-right" data-ng-if="!isWizard()" data-ng-include="'views/partials/user.html'"></span>
+  <div class="it-nav-wrapper">
+    <div class="it-header-center-wrapper" style="min-height: 160px;">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <div class="it-header-center-content-wrapper">
+              <div class="it-brand-wrapper">
+                <a href="index.html">
+                  <span class="logo-wrapper">
+                    <img data-ng-src="{{app_logo}}" alt="Anac - Autorità Nazionale Anticorruzione" />
+                  </span>
+                </a>
+              </div>
+              <div class="it-right-zone"></div>
+            </div>
+          </div>
+          <div class="col-4">
+            <span
+              id="UserBox"
+              class="pull-right"
+              data-ng-if="!isWizard()"
+              data-ng-include="'views/partials/user.html'"
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="it-header-navbar-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <!-- start nav-->
+            <nav class="navbar navbar-expand-lg has-megamenu">
+              <button
+                class="custom-navbar-toggler"
+                type="button"
+                aria-controls="nav2"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                data-target="#nav2"
+              >
+                <svg class="icon">
+                  <use xlink:href="svg/sprite.svg#it-burger"></use>
+                </svg>
+              </button>
+              <div class="navbar-collapsable" id="nav2" style="display: none;">
+                <div class="overlay" style="display: none;"></div>
+                <div class="close-div">
+                  <button class="btn close-menu" type="button">
+                    <span class="it-close sr-only">chiudi</span>
+                    <svg class="icon icon-lg">
+                      <use xlink:href="svg/sprite.svg#it-close"></use>
+                    </svg>
+                  </button>
+                </div>
+                <div class="menu-wrapper">
+                  <div id="TitleBox">
+                    <div id="titleboxdefault">
+                      <div id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</div>
+                      <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{header_subtitle | translate}}</div>
+                    </div>
+                    <div id="titleboxoneline">
+                      <span id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</span>
+                      <span id="PageSubtitle" data-ng-if="hasSubtitle()"
+                        >- <span>{{header_subtitle | translate}}</span></span
+                      >
+                    </div>
+                  </div>
+                  <!--advanced search-->
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</header>

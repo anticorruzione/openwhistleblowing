@@ -1,0 +1,84 @@
+First download Strider into a local directory. Default dir will
+called 'strider'.
+
+$ git clone git@github.com:Strider-CD/strider <foldername>
+
+Then cd into that directory and run:
+
+$ npm install
+
+Next deploy to heroku.
+
+In your strider directory, run
+
+$ heroku login
+
+And login using your credentials.
+
+In your strider dir, run
+
+$ heroku create
+
+However, since our strider instance is already created, you can connect your local
+folder with it by running, the instance of our strider app is called
+desolate-waters-2425
+
+
+$ git remote add heroku git@heroku.com:desolate-waters-2425
+//your app name (git@heroku.com:appName) will be different
+//and randomly assigned by herku
+
+or you can type:
+
+$ heroku git:remote -a desolate-waters-2425
+
+This will create an application on heroku.  Now you need to give
+it a database and configure it.
+
+Next to add a remote mongodb instance run
+
+$ heroku addons:add mongolab
+
+Next, configure the buildpack strider will use. Since we use nodejs,
+run:
+
+$ heroku config:set BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt
+
+Next, configure the SERVER_NAME to point at your heroku app, run:
+
+$ heroku config:set SERVER_NAME=https://[appname].herokuapp.com/
+
+or in our case
+
+$ heroku config:set SERVER_NAME=https://desolate-waters-2425.herokuapp.com/
+
+Next, push to heroku.
+
+$ git push heroku master
+
+Next, you need to add a user to the database so you can connect to it.
+Go into heroku and find your new app, and go into mongolab and click on users
+and then click add user.
+
+Now you need to configure your DB_URI. The mongodb URI string
+can be found at the top of the mongolab page. Run:
+
+$ heroku config:set DB_URI=mongodb://<dbuser>:<dbpassword>@ds063150.mongolab.com:63150/heroku_app32543960
+
+Now your app is configured. Run:
+
+
+
+And open your app:
+
+$ heroku open
+
+If done correctly, you should see a login screen.
+
+Now you must add a user to your heroku app. Run:
+
+$ heroku run node bin/strider addUser
+
+See this webpage for more info:
+
+http://doics.co/2014/10/15/strider-ci-without-the-overhead/

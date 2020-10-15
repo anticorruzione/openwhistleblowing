@@ -2,7 +2,7 @@
 
 ## Introduzione
 Questo repository contiene il codice sorgente e il binario pronto per
-l'installazione di Openwhistleblowing (release 1.0.2), il software fornito per
+l'installazione di Openwhistleblowing (release 1.0.3), il software fornito per
 l'utilizzo interno di ANAC (Autoritá Nazionale Anti Corruzione).
 
 ## Installazione
@@ -30,7 +30,7 @@ cd openwhistleblowing
 yum -y install epel-release
 yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum -y install postgresql96-devel
-yum -y install binary/owb-1.0.2-1.x86_64.rpm &> /dev/null
+yum -y install binary/owb-1.0.3-1.x86_64.rpm &> /dev/null
 ```
 La configurazione del tool inizialmente puó essere effettuata mediante l'utilizzo dello script
 presente in src/scripts/setup.sh . Per ulteriori opzioni di configurazioni, riferirsi alla documentazione

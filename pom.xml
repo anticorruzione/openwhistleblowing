@@ -68,6 +68,15 @@
               </sources>
             </mapping>
             <mapping>
+              <directory>/var/owb/</directory>
+              <filemode>755</filemode>
+              <sources>
+                <source>
+                  <location>${basedir}/AUTHORS</location>
+                </source>
+              </sources>
+            </mapping>
+            <mapping>
               <directory>/usr/local/owb/backend/</directory>
               <filemode>755</filemode>
               <sources>

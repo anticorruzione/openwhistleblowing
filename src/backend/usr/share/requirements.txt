@@ -18,7 +18,7 @@ six==1.5.2
 storm==0.19
 transaction==1.1.1
 Twisted==20.3.0
-txsocksx==1.13.0.0
+txsocksx==1.15.0.2
 zope.component==4.0.2
 zope.event==4.0.1
 zope.interface==4.0.5

@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>owb</name>
   <description>owb installation rpm for RHEL 7.x</description>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -35,7 +35,7 @@
           </execution>
         </executions>
         <configuration>
-          <copyright>${project.inceptionYear}, LaserRomae s.r.l.</copyright>
+          <copyright>ANAC - 2020; globaLeaks - 2016</copyright>
           <distribution>LaserRomae s.r.l. ${project.inceptionYear}</distribution>
           <group>laser.anac</group>
           <packager>LaserRomae</packager>
@@ -55,6 +55,15 @@
               <sources>
                 <source>
                   <location>${basedir}/src/configs</location>
+                </source>
+              </sources>
+            </mapping>
+            <mapping>
+              <directory>/var/owb/</directory>
+              <filemode>755</filemode>
+              <sources>
+                <source>
+                  <location>${basedir}/LICENSE</location>
                 </source>
               </sources>
             </mapping>

@@ -24,7 +24,7 @@ FROM centos:7
 RUN yum -y install epel-release
 
 # postgres config
-RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm && yum -y install postgresql96-devel
+RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && yum -y install postgresql96-devel
 
 # backend specific instructions
 COPY --from=BUILDER /root/target/rpm/owb/RPMS/x86_64/owb-1.0.4-1.x86_64.rpm /root/

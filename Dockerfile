@@ -10,7 +10,7 @@ MAINTAINER supporto.sviluppo@laserromae.it
 RUN yum -y install maven rpm-build
 
 # creating the rpm
-COPY pom.xml /root
+COPY AUTHORS LICENSE pom.xml /root/
 COPY src /root/src
 RUN cd /root; mvn package
 
@@ -28,7 +28,7 @@ RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel
 
 # backend specific instructions
 COPY --from=BUILDER /root/target/rpm/owb/RPMS/x86_64/owb-1.0.4-1.x86_64.rpm /root/
-RUN yum -y install /root/owb-1.0.4-1.x86_64.rpm 
+RUN yum -y install /root/owb-1.0.4-1.x86_64.rpm
 
 EXPOSE 80
 

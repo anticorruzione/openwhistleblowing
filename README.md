@@ -28,7 +28,7 @@ oppure lanciando manualmente le seguenti istruzioni:
 ```bash
 cd openwhistleblowing
 yum -y install epel-release
-yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 yum -y install postgresql96-devel
 yum -y install binary/owb-1.0.4-1.x86_64.rpm &> /dev/null
 ```

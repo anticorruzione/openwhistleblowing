@@ -12,7 +12,8 @@ RUN yum -y install maven rpm-build
 # creating the rpm
 COPY pom.xml /root
 COPY src /root/src
-RUN cd /root; mvn package
+COPY LICENSE AUTHORS /root
+RUN cd /root; ls -l src; mvn package
 
 ############################################
 #                                          #
@@ -21,10 +22,10 @@ RUN cd /root; mvn package
 ############################################
 FROM centos:7
 # package prerequisites
-RUN yum -y install epel-release
+RUN yum -y update && yum -y install epel-release
 
 # postgres config
-RUN yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-redhat-repo-latest.noarch.rpm && yum -y install postgresql96-devel
+RUN yum -y install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && yum -y install postgresql96-devel
 
 # backend specific instructions
 COPY --from=BUILDER /root/target/rpm/owb/RPMS/x86_64/owb-1.0.4-1.x86_64.rpm /root/

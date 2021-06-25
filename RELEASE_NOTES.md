@@ -34,3 +34,10 @@ cd /var/owb/db/
 sqlite glbackend-30.db < upgrade_1.0.3_to_1.0.4.sql
 ```
 
+### 1.0.5 (25.06.2021)
+- corretto URL nel templating email
+- eseguire lo script upgrade_1.0.4_to_1.0.5.sql dentro al folder /var/owb/db per aggiornare il database, prima del restart dell'applicazione
+```bash
+cd /var/owb/db/
+sqlite glbackend-30.db < upgrade_1.0.4_to_1.0.5.sql
+```

@@ -25,7 +25,6 @@ sqlite glbackend-30.db < upgrade_1.0.1_to_1.0.2.sql
 cd /var/owb/db/
 sqlite glbackend-30.db < upgrade_1.0.2_to_1.0.3.sql
 ```
-
 ### 1.0.4 (16.10.2020)
 - fix varie
 - eseguire lo script upgrade_1.0.3_to_1.0.4.sql dentro al folder /var/owb/db per aggiornare il database, prima del restart dell'applicazione
@@ -41,3 +40,6 @@ sqlite glbackend-30.db < upgrade_1.0.3_to_1.0.4.sql
 cd /var/owb/db/
 sqlite glbackend-30.db < upgrade_1.0.4_to_1.0.5.sql
 ```
+
+### 1.0.6 (19.09.2022)
+- corretto errore nella lib delivery_sched.py

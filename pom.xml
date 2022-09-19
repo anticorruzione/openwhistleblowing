@@ -6,7 +6,7 @@
   <packaging>rpm</packaging>
   <name>owb</name>
   <description>owb installation rpm for RHEL 7.x</description>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -35,7 +35,7 @@
           </execution>
         </executions>
         <configuration>
-          <copyright>ANAC - 2020; globaLeaks - 2016</copyright>
+          <copyright>ANAC - 2022; globaLeaks - 2016</copyright>
           <distribution>LaserRomae s.r.l. ${project.inceptionYear}</distribution>
           <group>laser.anac</group>
           <packager>LaserRomae</packager>

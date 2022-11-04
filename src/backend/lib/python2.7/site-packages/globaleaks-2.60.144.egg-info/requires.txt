@@ -1,5 +1,5 @@
 Parsley==1.2
-Twisted==13.2.0
+Twisted==22.10.0
 cffi==0.8.2
 cryptography==0.8.2
 cyclone==1.1
